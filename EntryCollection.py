@@ -53,6 +53,6 @@ class EntryCollection:
 		Y = numpy.zeros(shape = len(self.entry_array));
 		for i in range(len(self.entry_array)):
 			Y[i] = self.entry_array[i].feature_list[len(self.entry_array[i].feature_list) - 1];
-		return (X, Y);
+		return (X, numpy.transpose(Y));
 
 

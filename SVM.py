@@ -1,5 +1,5 @@
 from sklearn import svm
-import csv, EntryCollection, Entry, numpy, random
+import EntryCollection, Entry, numpy, DataSet, random
 
 def create_svms(training_population, sample_training_size, number_of_svms):
 	svm_array = [];
@@ -8,7 +8,7 @@ def create_svms(training_population, sample_training_size, number_of_svms):
 		training_collection = EntryCollection.EntryCollection(random_sample);
 		X_Y = training_collection.get_X_Y_vector_tuple();
 		X = X_Y[0];
-		Y = numpy.transpose(X_Y[1]);
+		Y = X_Y[1];
 		clf = svm.SVC(kernel = 'linear');
 		clf.fit(X, Y);
 		svm_array.append(clf);
@@ -33,34 +33,21 @@ def test_svm_bagging_on_set(X, Y, svm_array):
 
 	return (correct * 100.0)/i;
 
-f = open('crx.data.csv')
-
-csv_f = csv.reader(f);
-
-all_entries = [];
-for row in csv_f:
-	all_entries.append(Entry.Entry(row));
-
-
 
 TRAINING_SIZE = 400;
-NUM_SVMS = 5;
+NUM_SVMS = 1;
 SAMPLE_SIZE = 100;
 
-if(TRAINING_SIZE < SAMPLE_SIZE):
-	raise ValueError("Training Size must be Larger than Sample Size");
-
-random.shuffle(all_entries);
-training_set = all_entries[0:TRAINING_SIZE - 1];
-
-testing_set = all_entries[TRAINING_SIZE:];
-
+data = DataSet.DataSet();
+train_test = data.get_training_set_and_test_set_tuple(TRAINING_SIZE);
+training_set = train_test[0];
+testing_set = train_test[1];
 
 svms = create_svms(training_set, SAMPLE_SIZE, NUM_SVMS);	
 
 testing_collection = EntryCollection.EntryCollection(testing_set);
 X_Y = testing_collection.get_X_Y_vector_tuple();
 X = X_Y[0];
-Y = numpy.transpose(X_Y[1]);
+Y = X_Y[1];
 
 print test_svm_bagging_on_set(X, Y, svms);
