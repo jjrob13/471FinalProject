@@ -9,7 +9,7 @@ def create_svms(training_population, sample_training_size, number_of_svms):
 		X_Y = training_collection.get_X_Y_vector_tuple();
 		X = X_Y[0];
 		Y = numpy.transpose(X_Y[1]);
-		clf = svm.SVC();
+		clf = svm.SVC(kernel = 'linear');
 		clf.fit(X, Y);
 		svm_array.append(clf);
 
@@ -43,9 +43,9 @@ for row in csv_f:
 
 
 
-TRAINING_SIZE = 100;
-NUM_SVMS = 50;
-SAMPLE_SIZE = 50;
+TRAINING_SIZE = 400;
+NUM_SVMS = 5;
+SAMPLE_SIZE = 100;
 
 if(TRAINING_SIZE < SAMPLE_SIZE):
 	raise ValueError("Training Size must be Larger than Sample Size");
