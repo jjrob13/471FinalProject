@@ -1,4 +1,4 @@
-import Entry, EntryCollection, csv, random
+import Entry, csv, random
 class DataSet:
 	def __init__(self, filename = 'crx.data.csv'):
 		f = open(str(filename))
@@ -11,7 +11,7 @@ class DataSet:
 
 
 
-	def get_training_set_and_test_set_tuple(self, training_set_size):
+	def get_training_and_test_set_tuple(self, training_set_size):
 		if(training_set_size > len(self.all_entries)):
 			raise ValueExcept('Size of training set must be less than or equal to population size');
 
@@ -20,8 +20,5 @@ class DataSet:
 
 		testing_set = self.all_entries[training_set_size:];
 
-		training_collection = EntryCollection.EntryCollection(training_set);
-		testing_collection = EntryCollection.EntryCollection(testing_set);
-
-		return (training_collection.get_X_Y_vector_tuple(), testing_collection.get_X_Y_vector_tuple());
+		return (training_set, testing_set);
 

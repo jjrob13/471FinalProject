@@ -56,6 +56,3 @@ class EntryCollection:
 		return (X, numpy.transpose(Y));
 
 
-def get_X_Y_tuple_from_entries(entry_array):
-	collection = EntryCollection(entry_array);
-	return collection.get_X_Y_tuple();

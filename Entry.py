@@ -1,4 +1,4 @@
-import numpy, MyStringLib
+import numpy, MyStringLib, EntryCollectionProcessor
 
 class Entry:
 	"""Static class variable.  Lists that are used to convert from char to int.  It essentially simulates enums"""
@@ -45,3 +45,7 @@ class Entry:
 
 		result_str += "]";
 		return result_str;
+
+def get_X_Y_tuple_from_entries(entry_array):
+	collection = EntryCollectionProcessor.EntryCollection(entry_array);
+	return collection.get_X_Y_tuple();
