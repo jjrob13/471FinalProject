@@ -36,10 +36,12 @@ class SVMThread(threading.Thread):
 	def __init__(self, svm_number, training_population, sample_training_size):
 		threading.Thread.__init__(self);
 		self.svm_number = svm_number;
+		self.training_population = training_population;
+		self.sample_training_size = sample_training_size;
 
 	def run(self):
-		random_sample = random.sample(set(training_population), sample_training_size);
-		X_Y = training_collection.get_X_Y_tuple_from_entries(random_sample);
+		random_sample = random.sample(set(self.training_population), self.sample_training_size);
+		X_Y = Entry.get_X_Y_tuple_from_entries(random_sample);
 		X = X_Y[0];
 		Y = X_Y[1];
 		self.classifier = svm.SVC(kernel = 'linear');
@@ -51,7 +53,7 @@ def create_svms_concurrent(training_population, sample_training_size, number_of_
 	for i in range(number_of_svms):
 		newThread = SVMThread(i, training_population, sample_training_size);
 		newThread.start();
-		threadArray.append();
+		threadArray.append(newThread);
 
 	svm_array = [];
 	for thread in threadArray:
@@ -62,7 +64,7 @@ def create_svms_concurrent(training_population, sample_training_size, number_of_
 
 
 TRAINING_SIZE = 400;
-NUM_SVMS = 1;
+NUM_SVMS = 10;
 SAMPLE_SIZE = 100;
 
 data = DataSet.DataSet();
