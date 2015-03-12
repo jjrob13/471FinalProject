@@ -66,7 +66,7 @@ class Tester(threading.Thread):
 			self.y_vals.append(t.result);
 
 
-def test_and_plot(num_svm = 3, num_nb = 10, num_dt = 10, training_set_size = 400, sampling_size = 100, plot_aggregate = True):
+def perform_bagging_and_plot(num_svm = 3, num_nb = 10, num_dt = 10, training_set_size = 400, sampling_size = 100, plot_aggregate = True):
 	data = DataSet.DataSet();
 	train_test = data.get_training_and_test_set_tuple(training_set_size);
 	training_set = train_test[0];
@@ -128,5 +128,3 @@ def test_and_plot(num_svm = 3, num_nb = 10, num_dt = 10, training_set_size = 400
 	plt.title("Sample Size: " + str(sampling_size) + "\nTraining Population: " + str(len(training_set)));
 
 	plt.show();
-
-test_and_plot(0, 0, 10);
