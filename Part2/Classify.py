@@ -116,6 +116,10 @@ def test_and_plot(num_svm = 3, num_nb = 10, num_dt = 10, training_set_size = 400
 
 	if plot_aggregate:
 		plt.plot([0] + allClassifierTester.y_vals, label='Aggregation of all methods');
+
+	#set axis range
+	plt.xlim(1, plt.xlim()[1]);
+	plt.ylim(75, plt.ylim()[1]);
 	plt.legend(framealpha=0.5);
 
 	plt.ylabel("Correct classification (%)");
@@ -125,5 +129,4 @@ def test_and_plot(num_svm = 3, num_nb = 10, num_dt = 10, training_set_size = 400
 
 	plt.show();
 
-test_and_plot(0, 0, 10, plot_aggregate = False);
-test_and_plot(0, 10, 0, plot_aggregate = False);
+test_and_plot(0, 0, 10);
