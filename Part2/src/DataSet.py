@@ -16,7 +16,7 @@ class DataSet:
 		
 		self.update_training_size(training_size_percentage);
 	def update_training_size(self, training_size_percentage):
-	
+		self.training_size_percentage = training_size_percentage;	
 		random.shuffle(self.all_entries);
 		training_size = int(training_size_percentage * len(self.all_entries)) ;
 		
@@ -25,3 +25,6 @@ class DataSet:
 		
 		self.testing_set = XY_Set(Entry.get_X_Y_tuple_from_entries(test_data)[0], Entry.get_X_Y_tuple_from_entries(test_data)[1]);			
 		self.training_set = XY_Set(Entry.get_X_Y_tuple_from_entries(training_data)[0], Entry.get_X_Y_tuple_from_entries(training_data)[1]);	
+
+	def shuffle(self):
+		self.update_training_size(self.training_size_percentage);
