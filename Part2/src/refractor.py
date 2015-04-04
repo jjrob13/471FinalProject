@@ -31,5 +31,5 @@ for i in range(1, 10):
 	labels = ("", "SVM", "",  "NB", "", "DT");
 	ax.set_xticklabels(labels);
 	ax.set_title("Training With {0}% of Data".format(str(i * 10)))
-	axes.add(ax);
+	axes.append(ax);
 plt.show();
