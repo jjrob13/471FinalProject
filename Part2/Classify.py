@@ -72,7 +72,7 @@ def perform_bagging_and_plot(num_svm = 3, num_nb = 10, num_dt = 10, training_set
 	training_set = train_test[0];
 	testing_set = train_test[1];
 
-	X_Y = Entry.get_X_Y_tuple_from_entries(training_set);
+	X_Y = Entry.get_X_Y_tuple_from_entries(testing_set);
 	X = X_Y[0];
 	Y = X_Y[1];
 
